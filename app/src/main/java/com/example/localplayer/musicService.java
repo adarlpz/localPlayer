@@ -1,10 +1,8 @@
 package com.example.localplayer;
-
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
-import android.util.Log;
 
 public class musicService extends Service {
     private int currentTrackResId = -1;
@@ -15,7 +13,6 @@ public class musicService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null && intent.getAction() != null) {
             String action = intent.getAction();
-
             switch (action) {
                 case "ACTION_PLAY":
                     if (mediaPlayer == null) {
@@ -46,20 +43,14 @@ public class musicService extends Service {
             mediaPlayer.release();
             mediaPlayer = null;
         }
-
         mediaPlayer = MediaPlayer.create(this, trackResId);
         mediaPlayer.setLooping(false);
         mediaPlayer.start();
         currentTrackResId = trackResId;
-
-        mediaPlayer.setOnCompletionListener(mp -> stopSelf());  // Stop service when track ends
+        mediaPlayer.setOnCompletionListener(mp -> stopSelf());  //cierra el servicio cuando un track termina
     }
     private int getRawResourceId(String trackName) {
-        int resId = getResources().getIdentifier(trackName, "raw", getPackageName());
-        if (resId == 0) {
-            Log.e("ResourceError", "Archivo no encontrado en res/raw: " + trackName);
-        }
-        return resId;
+        return getResources().getIdentifier(trackName, "raw", getPackageName());
     }
     @Override
     public void onDestroy() {

@@ -1,5 +1,4 @@
 package com.example.localplayer;
-
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
@@ -28,7 +27,6 @@ public class player extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_player);
-
         trackTitle = findViewById(R.id.trackTitle);
         trackArtist = findViewById(R.id.trackArtist);
         trackAlbum = findViewById(R.id.trackAlbum);
@@ -38,7 +36,6 @@ public class player extends AppCompatActivity {
         trackNextButton = findViewById(R.id.trackNextButton);
         trackCycleButton= findViewById(R.id.trackCycleButton);
         trackRandomButton = findViewById(R.id.trackRandomButton);
-
         trackPlayPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +66,6 @@ public class player extends AppCompatActivity {
                 trackRandom();
             }
         });
-
         try {
             loadTrackData();
         } catch (IOException e) {
